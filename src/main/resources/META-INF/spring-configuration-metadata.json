@@ -1,0 +1,71 @@
+{
+	"groups": [
+		{
+			"sourceType": "cn.amorou.uid.impl.DefaultUidGenerator",
+			"name": "uid",
+			"type": "cn.amorou.uid.impl.DefaultUidGenerator"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.CachedUidGenerator",
+			"name": "uid",
+			"type": "cn.amorou.uid.impl.CachedUidGenerator"
+		}
+	],
+	"properties": [
+		{
+			"sourceType": "cn.amorou.uid.worker.WorkerIdAssigner",
+			"name": "uid.worker-id-assigner-impl",
+			"defaultValue": "cn.amorou.uid.worker.SimpleWorkerIdAssigner",
+			"description": "WorkerIdAssigner实现，可选[cn.amorou.uid.worker.DisposableWorkerIdAssigner,cn.amorou.uid.worker.SimpleWorkerIdAssigner]",
+			"type": "cn.amorou.uid.worker.WorkerIdAssigner"
+		},
+		{
+			"sourceType": "cn.amorou.uid.UidGenerator",
+			"name": "uid.uid-generator-impl",
+			"defaultValue": "cn.amorou.uid.impl.DefaultUidGenerator",
+			"description": "UidGenerator实现，可选[cn.amorou.uid.impl.DefaultUidGenerator,cn.amorou.uid.impl.CachedUidGenerator]",
+			"type": "cn.amorou.uid.UidGenerator"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.DefaultUidGenerator",
+			"name": "uid.time-bits",
+			"defaultValue": 28,
+			"description": "可使用时长为以时间基点epochStr为起点，timeBits为增量的时间长度",
+			"type": "java.lang.Integer"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.DefaultUidGenerator",
+			"name": "uid.worker-bits",
+			"defaultValue": 22,
+			"description": "机器id，最多可支持约2^n次机器启动",
+			"type": "java.lang.Integer"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.DefaultUidGenerator",
+			"name": "uid.seq-bits",
+			"defaultValue": 13,
+			"description": "每秒下的并发序列，该值越大，每秒支持的并发生成的序列越大",
+			"type": "java.lang.Integer"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.DefaultUidGenerator",
+			"name": "uid.epoch-str",
+			"defaultValue": "2016-05-20",
+			"description": "时间基点，格式：yyyy-MM-dd，这个值会转换成毫秒的时间戳，用于时间长度起始",
+			"type": "java.lang.String"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.CachedUidGenerator",
+			"name": "uid.boost-power",
+			"defaultValue": 3,
+			"description": "RingBuffer size扩容参数，可提高UID生成的吞吐量，过高会造成栈溢出",
+			"type": "java.lang.Integer"
+		},
+		{
+			"sourceType": "cn.amorou.uid.impl.CachedUidGenerator",
+			"name": "uid.schedule-interval",
+			"description": "RingBuffer填充周期，在Schedule线程中，周期性检查填充。一般不使用这个属性，除非使用ID的频次固定。",
+			"type": "java.lang.Long"
+		}
+	]
+}
